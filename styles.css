@@ -30,3 +30,33 @@ body {
 .hidden {
     display: none;
 }
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border-radius: 10px;
+}
+
+.popup-content {
+    position: relative;
+}
+
+#prizeImage {
+    width: 200px;
+    height: auto;
+    margin-top: 10px;
+}
+
+#closePopup {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}

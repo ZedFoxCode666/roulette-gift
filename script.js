@@ -27,24 +27,17 @@ const winSound = new Audio("win.mp3");
 // Gambar roda
 function drawWheel() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     for (let i = 0; i < prizes.length; i++) {
         const angle = startAngle + i * arc;
         ctx.fillStyle = colors[i];
-
-        // Buat sektor roda
         ctx.beginPath();
         ctx.moveTo(150, 150);
         ctx.arc(150, 150, 150, angle, angle + arc, false);
         ctx.lineTo(150, 150);
         ctx.fill();
-
-        // Garis pembatas antar sektor
         ctx.strokeStyle = "black";
         ctx.lineWidth = 3;
         ctx.stroke();
-
-        // Tulis nama hadiah
         ctx.save();
         ctx.translate(150, 150);
         ctx.rotate(angle + arc / 2);
@@ -55,6 +48,8 @@ function drawWheel() {
         ctx.restore();
     }
 }
+
+drawWheel();
 
 // Fungsi untuk memutar roda
 function spinWheel() {

@@ -10,20 +10,22 @@
     <div class="container">
         <h1>Spin the Wheel!</h1>
         <div class="wheel-container">
-            <div id="arrow"></div>
             <canvas id="wheel" width="300" height="300"></canvas>
             <button id="spinButton">Spin</button>
         </div>
         <div id="result" class="hidden"></div>
     </div>
-<div id="prizePopup" class="popup hidden">
-    <div class="popup-content">
-        <span id="closePopup">&times;</span>
-        <img src="IMG_2508.jpeg" alt="Hadiah 1">
-        <img src="IMG_2509.jpeg" alt="Hadiah 2">
-        <img src="IMG_2510.jpeg" alt="Hadiah 3">
+
+    <!-- Panah penunjuk -->
+    <div id="arrow"></div>
+
+    <!-- Popup Hadiah -->
+    <div id="prizePopup" class="popup hidden">
+        <div class="popup-content">
+            <span id="closePopup" class="close">&times;</span>
+            <img id="prizeImage" src="" alt="Hadiah">
+        </div>
     </div>
-</div>
 
     <script src="script.js"></script>
 </body>

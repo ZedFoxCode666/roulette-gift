@@ -60,3 +60,15 @@ body {
     font-size: 24px;
     cursor: pointer;
 }
+
+#arrow {
+    position: absolute;
+    top: 120px; /* Sesuaikan biar pas */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 30px solid red; /* Warna panah */
+}

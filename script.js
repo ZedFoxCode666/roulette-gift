@@ -8,11 +8,11 @@ const closePopup = document.getElementById("closePopup");
 
 // Hadiah & warna
 const prizes = [
-    { name: "🎁 Mystery Box", img: "IMG_2508.jpeg" },
-    { name: "❌ Zonk", img: null },
-    { name: "🎁 Mystery Box", img: "IMG_2509.jpeg" },
-    { name: "❌ Zonk", img: null },
-    { name: "🎁 Mystery Box", img: "IMG_2510.jpeg" }
+    { name: "🎁 Mystery Box 1", img: "IMG_2508.jpeg" },
+    { name: "❌ Zonk", img: "IMG_2511.jpeg" },  
+    { name: "🎁 Mystery Box 2", img: "IMG_2509.jpeg" },
+    { name: "❌ Zonk", img: "IMG_2512.jpeg" },  
+    { name: "🎁 Mystery Box 3", img: "IMG_2510.jpeg" }
 ];
 
 const colors = ["#ffcc00", "#ff6666", "#ffcc00", "#ff6666", "#ffcc00"];
@@ -93,13 +93,9 @@ function spinWheel() {
             resultDiv.classList.remove("hidden");
             spinning = false;
 
-            if (selectedPrize.name.includes("Mystery Box")) {
-                winSound.play();
-                if (selectedPrize.img) {
-                    prizeImage.src = selectedPrize.img;
-                } else {
-                    prizeImage.src = "default.png";
-                }
+            // Tampilkan hadiah sesuai dengan yang dipilih
+            if (selectedPrize.img) {
+                prizeImage.src = selectedPrize.img;
                 prizePopup.classList.remove("hidden");
             }
         }
@@ -115,5 +111,4 @@ closePopup.addEventListener("click", () => {
 });
 
 spinButton.addEventListener("click", spinWheel);
-drawWheel();
 drawWheel();

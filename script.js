@@ -8,11 +8,11 @@ const closePopup = document.getElementById("closePopup");
 
 // Hadiah & warna
 const prizes = [
-    { name: "🎁 Mystery Box", img: "hadiah1.jpg" },
+    { name: "🎁 Mystery Box", img: "IMG_2508.jpeg" },
     { name: "❌ Zonk", img: null },
-    { name: "🎁 Mystery Box", img: "hadiah2.jpg" },
+    { name: "🎁 Mystery Box", img: "IMG_2509.jpeg" },
     { name: "❌ Zonk", img: null },
-    { name: "🎁 Mystery Box", img: "hadiah3.jpg" }
+    { name: "🎁 Mystery Box", img: "IMG_2510.jpeg" }
 ];
 
 const colors = ["#ffcc00", "#ff6666", "#ffcc00", "#ff6666", "#ffcc00"];
@@ -26,6 +26,8 @@ const winSound = new Audio("win.mp3");
 
 // Gambar roda
 function drawWheel() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     for (let i = 0; i < prizes.length; i++) {
         let angle = startAngle + i * arc;
         ctx.fillStyle = colors[i];
@@ -37,16 +39,29 @@ function drawWheel() {
         ctx.lineTo(150, 150);
         ctx.fill();
 
-        // Rotasi teks biar jelas
+        // Garis pembatas antar sektor
+        ctx.strokeStyle = "black"; 
+        ctx.lineWidth = 5;
+        ctx.stroke();
+
+        // Tulis nama hadiah
         ctx.save();
         ctx.fillStyle = "black";
         ctx.translate(150, 150);
         ctx.rotate(angle + arc / 2);
         ctx.textAlign = "right";
-        ctx.font = "16px Arial";
+        ctx.font = "bold 16px Arial";
         ctx.fillText(prizes[i].name, 130, 10);
         ctx.restore();
     }
+
+    // Tambahin panah penunjuk hadiah
+    ctx.fillStyle = "red";
+    ctx.beginPath();
+    ctx.moveTo(140, 10);
+    ctx.lineTo(160, 10);
+    ctx.lineTo(150, 30);
+    ctx.fill();
 }
 
 // Fungsi untuk memutar roda
@@ -68,7 +83,10 @@ function spinWheel() {
 
         if (speed < 0.01) {
             clearInterval(spinAnimation);
-            let index = Math.floor(((startAngle % (Math.PI * 2)) / (2 * Math.PI)) * prizes.length);
+
+            // Dapetin hasil yang bener
+            let rawIndex = ((startAngle % (Math.PI * 2)) / (2 * Math.PI)) * prizes.length;
+            let index = Math.floor(prizes.length - rawIndex) % prizes.length;
             let selectedPrize = prizes[index];
 
             resultDiv.innerHTML = `Hasil: ${selectedPrize.name}`;
@@ -77,7 +95,11 @@ function spinWheel() {
 
             if (selectedPrize.name.includes("Mystery Box")) {
                 winSound.play();
-                prizeImage.src = selectedPrize.img; // Ganti dengan gambar hadiah
+                if (selectedPrize.img) {
+                    prizeImage.src = selectedPrize.img;
+                } else {
+                    prizeImage.src = "default.png";
+                }
                 prizePopup.classList.remove("hidden");
             }
         }
@@ -93,4 +115,5 @@ closePopup.addEventListener("click", () => {
 });
 
 spinButton.addEventListener("click", spinWheel);
+drawWheel();
 drawWheel();
